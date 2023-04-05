@@ -10,10 +10,10 @@
                 <label for="password">Password: </label>
                 <input type="password" id="password" v-model="studentLoginRequest.password" />
             </div>
-            <div>
-                <button type="submit" @click="login"> Login </button>
-            </div>
         </form>
+        <div>
+                <button type="submit" @click="login"> Login </button>
+        </div>
         <p> {{ message }}</p>
     </div>
 
@@ -41,8 +41,9 @@ export default {
                 response => {
                     let student = response.data;
                     console.log(student);
+                    localStorage.setItem('sid', student.id);
                     this.message = student;
-                    this.$router.push({name: "login"});
+                    this.$router.push({name: "studentProfile"});
                 }
             )
             .catch(error => {
